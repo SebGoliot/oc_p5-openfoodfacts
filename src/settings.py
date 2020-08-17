@@ -1,6 +1,8 @@
 
-DB_HOST = 'localhost'
-DB_PORT = '3306'
-DB_NAME = 'openfoodfacts'
-DB_USER = ''
-DB_PASSWORD = ''
+MYSQL_CONFIG = {
+    'host': 'localhost',
+    'port': '3306',
+    'database': 'openfoodfacts',
+    'user': '',
+    'password': ''
+}
