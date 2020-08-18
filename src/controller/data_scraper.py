@@ -1,6 +1,6 @@
 import requests
 import json
-from src.model.constants import API_ENDPOINT, API_SEARCH
+from model.constants import API_ENDPOINT, API_SEARCH
 
 class DataScraper():
     
@@ -11,7 +11,7 @@ class DataScraper():
         search_args = f"{category}&page_size={limit}&json=1"
         data = requests.get(url=f'{API_ENDPOINT}{API_SEARCH}{search_args}')
         clean_data = DataScraper.sanitize_data(data.content)
-        return clean_data
+        return {'category': category, 'content': clean_data}
 
 
     @staticmethod
@@ -27,7 +27,7 @@ class DataScraper():
             product['code'] = each.get('code', 0)
             product['product_name'] = each.get('product_name', '')
             product['stores'] = each.get('stores', '')
-            product['nutriscore_score'] = each.get('nutriscore_score', 999)
+            product['nutriscore'] = each.get('nutriscore', 999)
 
             products.append(product)
 
