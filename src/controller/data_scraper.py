@@ -27,7 +27,7 @@ class DataScraper():
             product['code'] = each.get('code', 0)
             product['product_name'] = each.get('product_name', '')
             product['stores'] = each.get('stores', '')
-            product['nutriscore'] = each.get('nutriscore_score', 999)   
+            product['nutriscore'] = each.get('nutriscore_grade', 'e')
 
             products.append(product)
 
