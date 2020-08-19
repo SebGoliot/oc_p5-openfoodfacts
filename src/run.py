@@ -1,3 +1,3 @@
-from controller.data_scraper import *
+from controller.db_manager import DbManager
 
-print(DataScraper.get_api_category('pizza', limit=10))
+DbManager().create_db()
