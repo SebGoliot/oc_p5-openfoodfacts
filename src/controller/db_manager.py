@@ -79,3 +79,8 @@ class DbManager():
 
         self.db_instance.commit()
 
+    def get_categories(self):
+        cursor = self.db_instance.cursor()
+        query = "SELECT id, name FROM Categories;"
+        cursor.execute(query)
+        return cursor.fetchall()
