@@ -1,3 +1,4 @@
-from controller.db_manager import DbManager
+from view.tui import *
 
-DbManager().create_db()
+if __name__ == "__main__":
+    app = App().run()

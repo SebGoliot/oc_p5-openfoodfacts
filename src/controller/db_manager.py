@@ -18,14 +18,17 @@ class DbManager():
             try:
                 self._db_instance.database = DB_NAME
             except:
-                self._create_db(populate=True)
+                self.create_db(populate=True)
         return self._db_instance
 
-    def _create_db(self, populate=False):
-        """Creates the database and tables from an sql file"""
+    def create_db(self, drop=False, populate=False):
+        """Creates the database and tables"""
 
         cursor = self.db_instance.cursor()
         sql_statement = ''
+
+        if drop:
+            cursor.execute(f'DROP DATABASE `{DB_NAME}`')
 
         for line in open(SQL_FILE):
             if line[:2] != '--':
