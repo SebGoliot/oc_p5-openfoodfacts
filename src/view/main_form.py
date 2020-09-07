@@ -15,7 +15,7 @@ class MainForm(npyscreen.FormBaseNew):
             name='Produits enregistrés'
         )
         self.nextrely += 3
-        self.favorites_btn=self.add(
+        self.reinit_btn=self.add(
             ResetDBButton,
             name='Réinitilaliser la base de données',
         )

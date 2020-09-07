@@ -46,8 +46,7 @@ class DbManager():
         cursor = self.db_instance.cursor()
 
         for each in CATEGORIES:
-            print(f'inserting category {each}')
-            query = f"INSERT INTO Categories (name) VALUES ('%s');" % each
+            query = "INSERT INTO Categories (name) VALUES ('%s');" % each
             cursor.execute(query)
             self.db_instance.commit()
 
@@ -60,21 +59,20 @@ class DbManager():
         cursor = self.db_instance.cursor()
 
         category = payload['category']
-        query = f"SELECT id FROM Categories WHERE name ='%s';" % category
+        query = "SELECT id FROM Categories WHERE name ='%s';" % category
         cursor.execute(query)
         category_id = cursor.fetchone()[0]
 
         for each in payload['content']:
-            query = f"""INSERT INTO Products
-                (name, category, nutriscore, stores)
-                VALUES (%s, %s, %s, %s);"""
+            query = ("INSERT INTO Products "
+                "(name, category, nutriscore, stores)"
+                "VALUES (%s, %s, %s, %s);")
             values = [
                 each['product_name'],
                 category_id,
                 each['nutriscore'],
                 each['stores']
             ]
-            print(f'inserting item {values[0]}')
             cursor.execute(query, values)
 
         self.db_instance.commit()
