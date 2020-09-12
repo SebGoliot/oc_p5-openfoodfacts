@@ -4,13 +4,13 @@ from model.constants import API_ENDPOINT, API_SEARCH
 
 class DataScraper():
     
-    @staticmethod
-    def get_api_category(category, limit=250):
+    @classmethod
+    def get_api_category(cls, category, limit=250):
         """Gets data from the API corresponding to a category """
 
         search_args = f"{category}&page_size={limit}&json=1"
         data = requests.get(url=f'{API_ENDPOINT}{API_SEARCH}{search_args}')
-        clean_data = DataScraper.sanitize_data(data.content)
+        clean_data = cls.sanitize_data(data.content)
         return {'category': category, 'content': clean_data}
 
 

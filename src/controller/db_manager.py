@@ -1,6 +1,5 @@
 import mysql.connector as db_connector
 from controller.data_scraper import DataScraper
-from model.product import Product
 from settings import *
 
 
@@ -18,6 +17,8 @@ class DbManager():
             try:
                 self._db_instance.database = DB_NAME
             except:
+                print('Base de données introuvable !\n'
+                    'Veuillez patienter...')
                 self.create_db(populate=True)
         return self._db_instance
 
@@ -81,4 +82,29 @@ class DbManager():
         cursor = self.db_instance.cursor()
         query = "SELECT id, name FROM Categories;"
         cursor.execute(query)
+        return cursor.fetchall()
+
+    def add_favorite(self, fav_id, subst_id):
+        cursor = self.db_instance.cursor()
+        query = ("INSERT INTO Favorites"
+            "(product_id, substitued_id)"
+            "VALUES (,'%s', '%s');")
+        cursor.execute(query, (fav_id, subst_id))
+
+    def get_favorites(self):
+        cursor = self.db_instance.cursor()
+        query = "SELECT * FROM Favorites;"
+        cursor.execute(query)
+        return cursor.fetchall()
+
+    def get_products_from_category(self, category_id, limit=75):
+        cursor = self.db_instance.cursor()
+        query = "SELECT * FROM Products WHERE category = %s LIMIT %s;"
+        cursor.execute(query, (category_id, limit))
+        return cursor.fetchall()
+
+    def find_product(self, search):
+        cursor = self.db_instance.cursor()
+        query = "SELECT name FROM Products WHERE name LIKE %s;"
+        cursor.execute(query, ('%'+search+'%',))
         return cursor.fetchall()
