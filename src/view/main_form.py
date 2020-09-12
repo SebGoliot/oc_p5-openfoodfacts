@@ -1,6 +1,6 @@
 import npyscreen
-from view.buttons import *
-
+from view.buttons import (
+    SearchButton, FavoritesButton, ResetDBButton, ExitButton)
 
 class MainForm(npyscreen.FormBaseNew):
     def create(self):
