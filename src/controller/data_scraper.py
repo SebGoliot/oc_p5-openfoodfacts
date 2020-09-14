@@ -1,6 +1,7 @@
+from re import search
 import requests
 import json
-from model.constants import API_ENDPOINT, API_SEARCH
+from settings import API_ENDPOINT
 
 class DataScraper():
     
@@ -8,8 +9,15 @@ class DataScraper():
     def get_api_category(cls, category, limit=250):
         """Gets data from the API corresponding to a category """
 
-        search_args = f"{category}&page_size={limit}&json=1"
-        data = requests.get(url=f'{API_ENDPOINT}{API_SEARCH}{search_args}')
+        search_args = {
+            'sort_by': 'unique_scans_n',
+            'action': 'process',
+            'search_terms': category,
+            'page_size': limit,
+            'json': 1
+        }
+
+        data = requests.get(url=API_ENDPOINT, params=search_args)
         clean_data = cls.sanitize_data(data.content)
         return {'category': category, 'content': clean_data}
 
