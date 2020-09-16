@@ -105,6 +105,6 @@ class DbManager():
 
     def find_product(self, search):
         cursor = self.db_instance.cursor()
-        query = "SELECT name FROM Products WHERE name LIKE %s;"
+        query = "SELECT * FROM Products WHERE name LIKE %s;"
         cursor.execute(query, ('%'+search+'%',))
         return cursor.fetchall()
