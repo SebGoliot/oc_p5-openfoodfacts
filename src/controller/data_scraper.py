@@ -37,6 +37,9 @@ class DataScraper():
             product['stores'] = each.get('stores', '')
             product['nutriscore'] = each.get('nutriscore_grade', 'e')
 
+            if product['product_name'] == '':
+                continue
+
             products.append(product)
 
         return products

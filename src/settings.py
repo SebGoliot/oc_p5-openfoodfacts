@@ -16,5 +16,6 @@ CATEGORIES = [
     'pizza',
     'saucisson',
     'jambon',
-    'salade'
+    'salade',
+    'pate a tartiner'
 ]
