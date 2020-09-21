@@ -4,36 +4,58 @@ from view.main_form import MainForm
 from view.products_form import ProductsForm
 from view.search_form import SearchForm
 from controller.db_manager import DbManager
-from view.search_result_form import SearchResultForm
 
 class App(npyscreen.NPSAppManaged):
 
     def __init__(self):
         self.db_mgr = DbManager()
         self.categories = self.db_mgr.get_categories()
-        self.current_category = ''
-        self.search = ''
         super().__init__()
-
-    def get_category_id(self):
-        for category in self.categories:
-            if category[1] == self.current_category:
-                return category[0]
 
     def onStart(self):
         self.addForm(MAIN, MainForm, name='OpenFoodFacts')
-        self.addForm(SEARCH, SearchForm, name='OpenFoodFacts - Search')
+        self.addForm(SEARCH_FORM, SearchForm, name='OpenFoodFacts - Search')
 
-    def late_add_form(self, form_id):
+    def late_add_form(self, form_id, **kwargs):
+        name, products = None, None
         try:
             self.removeForm(form_id)
-        except:
+        except KeyError:
             pass
 
-        if form_id == SEARCH_RESULT:
-            self.addForm(SEARCH_RESULT, SearchResultForm,
-                name='OpenFoodFacts - Search Results')
-        if form_id == PRODUCTS:
-            self.addForm(PRODUCTS, ProductsForm, name='OpenFoodFacts - Search')
+        try:
+            products = kwargs.get('products')
+        except KeyError:
+            pass
 
-        self.switchForm(form_id)
+        if form_id == PRODUCTS_SEARCH:
+            try:
+                search = kwargs.get('search')
+            except KeyError:
+                return
+
+            products = self.db_mgr.find_product(search)
+            name = 'OpenFoodFacts - Search Results'
+
+        elif form_id == PRODUCTS_CATEGORY:
+            category = None
+            try:
+                for cat in self.categories:
+                    if cat[1] == kwargs.get('category'):
+                        category = cat[0]
+            except KeyError:
+                return
+            
+            if category:
+                products = self.db_mgr.get_products_from_category(category)
+                name='OpenFoodFacts - Search'
+
+        elif form_id == PRODUCTS_FAVORITES:
+            products = self.db_mgr.get_favorites()
+            name='OpenFoodFacts - Favorites'
+
+        try:
+            self.addForm(form_id, ProductsForm, name=name, products = products)
+            self.switchForm(form_id)
+        except:
+            return

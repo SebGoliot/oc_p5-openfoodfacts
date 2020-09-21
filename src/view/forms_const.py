@@ -1,5 +1,6 @@
 MAIN = 'MAIN'
-SEARCH = 'SearchForm'
-SEARCH_RESULT = 'SearchResultForm'
-PRODUCTS = 'ProductsForm'
-CATEGORY = 'CategoryForm'
+SEARCH_FORM = 'SearchForm'
+
+PRODUCTS_SEARCH = 'ProductsSearchForm'
+PRODUCTS_CATEGORY = 'ProductsCategoryForm'
+PRODUCTS_FAVORITES = 'ProductsFavoritesForm'
