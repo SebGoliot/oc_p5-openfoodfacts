@@ -1,6 +1,4 @@
-import time
 import npyscreen
-from npyscreen import npyspmfuncs
 from view.forms_const import *
 
 class BackButton(npyscreen.ButtonPress):
@@ -39,10 +37,17 @@ class CategoryButton(npyscreen.ButtonPress):
 class ProductButton(npyscreen.ButtonPress):
 
     def __init__(self, *args, **kwargs):
-        self.product = kwargs.get('product')
+        self.product_id = kwargs.get('product_id')
         super().__init__(*args, **kwargs)
 
     def whenPressed(self):
-        r = self.parent.buttons[str(self.product)]
-        npyscreen.notify(message=repr(r), title=r.name)
-        time.sleep(1)
+        product = self.parent.buttons[str(self.product_id)]
+
+        notification_message = (f"Nom du produit : {product.name}\n"
+            f"Score : {product.score.upper()}\n"
+            "Disponible à :\n"
+            f"\t{', '.join([x for x in product.stores.split(',')])}")
+
+        r = npyscreen.notify_ok_cancel(
+            message=notification_message, title='Détail du produit', editw=1)
+        print(r)
