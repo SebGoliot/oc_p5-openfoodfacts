@@ -34,5 +34,5 @@ class SearchForm(npyscreen.FormBaseNew):
         for category in CATEGORIES:
             self.add(CategoryButton, name=category)
 
-        self.add(BackButton, name='Back', relx=-24, rely=-3)
-        self.add(ExitButton, name='Exit', relx=-12, rely=-3)
+        self.add(BackButton, name='Retour', relx=-24, rely=-3)
+        self.add(ExitButton, name='Quit', relx=-12, rely=-3)

@@ -1,6 +1,7 @@
 import npyscreen
 from view.forms_const import *
 from view.main_form import MainForm
+from view.product_notif_form import ProductsNotifyForm
 from view.products_form import ProductsForm
 from view.search_form import SearchForm
 from controller.db_manager import DbManager
@@ -12,9 +13,26 @@ class App(npyscreen.NPSAppManaged):
         self.categories = self.db_mgr.get_categories()
         super().__init__()
 
+
     def onStart(self):
         self.addForm(MAIN, MainForm, name='OpenFoodFacts')
         self.addForm(SEARCH_FORM, SearchForm, name='OpenFoodFacts - Search')
+
+
+    def product_notify(self, product):
+        try:
+            self.removeForm(PRODUCT_NOTIFY)
+        except KeyError:
+            pass
+
+        self.addForm(
+            PRODUCT_NOTIFY,
+            ProductsNotifyForm,
+            name = product.name,
+            product = product
+            )
+        self.switchForm(PRODUCT_NOTIFY)
+
 
     def late_add_form(self, form_id, **kwargs):
         name, products = None, None

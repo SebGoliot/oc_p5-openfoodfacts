@@ -16,5 +16,5 @@ class ProductsForm(npyscreen.FormMultiPage):
             self.add_widget_intelligent(
                 ProductButton, name=product[1], product_id=product[0])
 
-        self.add(BackButton, name='Back', relx=-24, rely=-3)
-        self.add(ExitButton, name='Exit', relx=-12, rely=-3)
+        self.add(BackButton, name='Retour', relx=-24, rely=-3)
+        self.add(ExitButton, name='Quit', relx=-12, rely=-3)

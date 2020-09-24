@@ -34,6 +34,10 @@ class CategoryButton(npyscreen.ButtonPress):
         self.parent.parentApp.late_add_form(
             PRODUCTS_CATEGORY, category = self.name)
 
+class NotifButton(npyscreen.ButtonPress):
+    def whenPressed(self):
+        pass #TODO: Handle this
+
 class ProductButton(npyscreen.ButtonPress):
 
     def __init__(self, *args, **kwargs):
@@ -43,11 +47,4 @@ class ProductButton(npyscreen.ButtonPress):
     def whenPressed(self):
         product = self.parent.buttons[str(self.product_id)]
 
-        notification_message = (f"Nom du produit : {product.name}\n"
-            f"Score : {product.score.upper()}\n"
-            "Disponible à :\n"
-            f"\t{', '.join([x for x in product.stores.split(',')])}")
-
-        r = npyscreen.notify_ok_cancel(
-            message=notification_message, title='Détail du produit', editw=1)
-        print(r)
+        self.parent.parentApp.product_notify(product)

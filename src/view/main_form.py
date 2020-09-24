@@ -7,7 +7,7 @@ class MainForm(npyscreen.FormBaseNew):
 
         self.search_btn=self.add(
             SearchButton, name='Rechercher un produit')
-            
+
         self.nextrely += 1
         self.favorites_btn=self.add(
             FavoritesButton, name='Produits enregistrés')
@@ -16,4 +16,4 @@ class MainForm(npyscreen.FormBaseNew):
         self.reinit_btn=self.add(
             ResetDBButton, name='Réinitilaliser la base de données')
 
-        self.exitButton = self.add(ExitButton, name="Exit", relx=-12, rely=-3)
+        self.exitButton = self.add(ExitButton, name="Quit", relx=-12, rely=-3)
