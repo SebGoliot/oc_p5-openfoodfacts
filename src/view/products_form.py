@@ -1,5 +1,5 @@
 import npyscreen
-from model.product import Product
+from model.product import Product, Substitute
 from view.buttons import BackButton, ExitButton, ProductButton
 
 class ProductsForm(npyscreen.FormMultiPage):
@@ -11,7 +11,13 @@ class ProductsForm(npyscreen.FormMultiPage):
     def create(self):
         self.buttons = {}
 
+        if isinstance(self.products[0], Substitute):
+            self.products = [
+                product.substitute.get_tuple() for product in self.products
+            ]
+
         for product in self.products:
+            print(product)
             self.buttons[str(product[0])] = Product.from_db_payload(product)
             self.add_widget_intelligent(
                 ProductButton, name=product[1], product_id=product[0])

@@ -1,6 +1,6 @@
 import npyscreen
 from npyscreen.wgtextbox import FixedText
-from view.buttons import BackButton, NotifButton
+from view.buttons import BackButton, FindSubstituteButton, SaveProductButton
 
 class ProductsNotifyForm(npyscreen.FormBaseNew):
 
@@ -12,13 +12,14 @@ class ProductsNotifyForm(npyscreen.FormBaseNew):
     def __init__(self, *args, **kwargs):
         self.product = kwargs.get('product')
         if not self.product:
-            raise RuntimeError('Missing product')
+            raise RuntimeError("Missing kwarg: 'product'")
+
         super().__init__(*args, **kwargs)
 
     def create(self):
 
         if self.product.stores == '':
-            stores = 'Aucun magasin n\'a été trouvé'
+            stores = "Aucun magasin n'a été trouvé"
         else:
             stores = ', '.join([x for x in self.product.stores.split(',')])
 
@@ -39,7 +40,21 @@ class ProductsNotifyForm(npyscreen.FormBaseNew):
             editable=False
         )
 
-        self.add(NotifButton, name='Rechercher un substitut', rely=-4)
+        if self.parentApp.subst_search:
+            self.add(
+                SaveProductButton,
+                name = 'Ajouter aux favoris',
+                rely = -4,
+                favorite_id = self.product.product_id,
+                substitued_id = self.parentApp.subst_search['from'].product_id)
+        else:
+            self.add(
+                FindSubstituteButton,
+                name = 'Rechercher un substitut',
+                rely = -4,
+                from_product = self.product)
+
+        
         self.add(BackButton, name='Retour', relx=46)
 
 

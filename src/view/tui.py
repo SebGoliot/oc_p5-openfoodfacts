@@ -1,4 +1,5 @@
 import npyscreen
+from model.product import Product, Substitute
 from view.forms_const import *
 from view.main_form import MainForm
 from view.product_notif_form import ProductsNotifyForm
@@ -11,6 +12,7 @@ class App(npyscreen.NPSAppManaged):
     def __init__(self):
         self.db_mgr = DbManager()
         self.categories = self.db_mgr.get_categories()
+        self.subst_search = None
         super().__init__()
 
 
@@ -41,39 +43,53 @@ class App(npyscreen.NPSAppManaged):
         except KeyError:
             pass
 
-        try:
-            products = kwargs.get('products')
-        except KeyError:
-            pass
-
         if form_id == PRODUCTS_SEARCH:
-            try:
-                search = kwargs.get('search')
-            except KeyError:
-                return
-
+            search = kwargs.get('search')
+            if not search:
+                raise RuntimeError("Missing kwarg: 'search'")
+  
             products = self.db_mgr.find_product(search)
             name = 'OpenFoodFacts - Search Results'
 
         elif form_id == PRODUCTS_CATEGORY:
-            category = None
-            try:
-                for cat in self.categories:
-                    if cat[1] == kwargs.get('category'):
-                        category = cat[0]
-            except KeyError:
-                return
-            
-            if category:
+            category = kwargs.get('category')
+            if not category:
+                raise RuntimeError("Missing kwarg: 'category'")
+            if isinstance(category, int):
                 products = self.db_mgr.get_products_from_category(category)
-                name='OpenFoodFacts - Search'
+            else:
+                for cat in self.categories:
+                    if cat[1] == category:
+                        products = self.db_mgr.get_products_from_category(cat[0])
+                        name = 'OpenFoodFacts - Search'
+                        break
 
         elif form_id == PRODUCTS_FAVORITES:
-            products = self.db_mgr.get_favorites()
+            favorites = self.db_mgr.get_favorites()
+            products = []
+            print(favorites)
+            for favorite in favorites:
+                print(favorite)
+                products.append(
+                    Substitute(
+                        Product.from_db_payload(
+                            self.db_mgr.get_product_from_id(favorite[1])
+                        ),
+                        Product.from_db_payload(
+                            self.db_mgr.get_product_from_id(favorite[2])
+                        )
+                    )
+                )
+            print(products)
             name='OpenFoodFacts - Favorites'
 
         try:
-            self.addForm(form_id, ProductsForm, name=name, products = products)
+            self.addForm(
+                form_id, ProductsForm,
+                name=name, products = products
+                )
             self.switchForm(form_id)
-        except:
+        except Exception as e:
+            print(products)
+            print(f'Oops :\n{e}')
             return

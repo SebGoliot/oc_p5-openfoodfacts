@@ -17,7 +17,18 @@ class Product():
         """
         return cls(*payload)
 
+    def get_tuple(self):
+        return (
+            self.product_id, self.name, self.category, self.score, self.stores)
+
     def __repr__(self):
         return (
             f'#{self.product_id}-{self.category}: {self.name} ^{self.score}\n'
             f'buy @ {self.stores}')
+
+
+class Substitute():
+
+    def __init__(self, substitute: Product, from_product: Product):
+        self.substitute = substitute
+        self.from_product = from_product

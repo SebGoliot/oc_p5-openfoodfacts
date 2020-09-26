@@ -88,8 +88,9 @@ class DbManager():
         cursor = self.db_instance.cursor()
         query = ("INSERT INTO Favorites"
             "(product_id, substitued_id)"
-            "VALUES (,'%s', '%s');")
+            "VALUES (%s, %s);")
         cursor.execute(query, (fav_id, subst_id))
+        self.db_instance.commit()
 
     def get_favorites(self):
         cursor = self.db_instance.cursor()
@@ -108,3 +109,9 @@ class DbManager():
         query = "SELECT * FROM Products WHERE name LIKE %s;"
         cursor.execute(query, ('%'+search+'%',))
         return cursor.fetchall()
+
+    def get_product_from_id(self, product_id):
+        cursor = self.db_instance.cursor()
+        query = "SELECT * FROM Products WHERE id = %s;"
+        cursor.execute(query, (product_id,))
+        return cursor.fetchone()
