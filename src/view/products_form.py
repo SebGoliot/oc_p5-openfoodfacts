@@ -17,7 +17,6 @@ class ProductsForm(npyscreen.FormMultiPage):
             ]
 
         for product in self.products:
-            print(product)
             self.buttons[str(product[0])] = Product.from_db_payload(product)
             self.add_widget_intelligent(
                 ProductButton, name=product[1], product_id=product[0])

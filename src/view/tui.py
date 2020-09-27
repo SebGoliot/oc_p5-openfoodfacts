@@ -12,7 +12,7 @@ class App(npyscreen.NPSAppManaged):
     def __init__(self):
         self.db_mgr = DbManager()
         self.categories = self.db_mgr.get_categories()
-        self.subst_search = None
+        self.subst_search_from = None
         super().__init__()
 
 
@@ -65,13 +65,8 @@ class App(npyscreen.NPSAppManaged):
                         break
 
         elif form_id == PRODUCTS_FAVORITES:
-            favorites = self.db_mgr.get_favorites()
-            products = []
-            print(favorites)
-            for favorite in favorites:
-                print(favorite)
-                products.append(
-                    Substitute(
+            products = [
+                Substitute(
                         Product.from_db_payload(
                             self.db_mgr.get_product_from_id(favorite[1])
                         ),
@@ -79,8 +74,8 @@ class App(npyscreen.NPSAppManaged):
                             self.db_mgr.get_product_from_id(favorite[2])
                         )
                     )
-                )
-            print(products)
+                for favorite in self.db_mgr.get_favorites()
+            ]
             name='OpenFoodFacts - Favorites'
 
         try:
@@ -89,7 +84,5 @@ class App(npyscreen.NPSAppManaged):
                 name=name, products = products
                 )
             self.switchForm(form_id)
-        except Exception as e:
-            print(products)
-            print(f'Oops :\n{e}')
+        except:
             return

@@ -44,7 +44,7 @@ class SaveProductButton(npyscreen.ButtonPress):
     def whenPressed(self):
         self.parent.parentApp.db_mgr.add_favorite(
                     self.favorite_id, self.substitued_id)
-        self.parent.parentApp.subst_search['from'] = None
+        self.parent.parentApp.subst_search_from = None
         self.parent.parentApp.switchForm(MAIN)
 
 class FindSubstituteButton(npyscreen.ButtonPress):
@@ -54,7 +54,7 @@ class FindSubstituteButton(npyscreen.ButtonPress):
         super().__init__(*args, **kwargs)
 
     def whenPressed(self):
-        self.parent.parentApp.subst_search = {'from' : self.from_product}
+        self.parent.parentApp.subst_search_from = self.from_product
         self.parent.parentApp.switchFormPrevious()
         self.parent.parentApp.late_add_form(
             PRODUCTS_CATEGORY, category = self.from_product.category)

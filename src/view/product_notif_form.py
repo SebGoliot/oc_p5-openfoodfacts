@@ -40,13 +40,13 @@ class ProductsNotifyForm(npyscreen.FormBaseNew):
             editable=False
         )
 
-        if self.parentApp.subst_search:
+        if self.parentApp.subst_search_from:
             self.add(
                 SaveProductButton,
                 name = 'Ajouter aux favoris',
                 rely = -4,
                 favorite_id = self.product.product_id,
-                substitued_id = self.parentApp.subst_search['from'].product_id)
+                substitued_id = self.parentApp.subst_search_from.product_id)
         else:
             self.add(
                 FindSubstituteButton,
