@@ -7,8 +7,8 @@ API_ENDPOINT = "https://fr.openfoodfacts.org/cgi/search.pl"
 MYSQL_CONFIG = {
     'host': 'localhost',
     'port': '3306',
-    'user': '',
-    'password': ''
+    'user': 'root',
+    'password': 'PASSWORD_HERE'
 }
 
 CATEGORIES = [
