@@ -1,6 +1,7 @@
 import mysql.connector as db_connector
 from openfoodfacts.controller.data_scraper import DataScraper
 from openfoodfacts.settings import *
+from os import path
 
 
 class DbManager():
@@ -13,7 +14,13 @@ class DbManager():
         """Get a connection to the db"""
 
         if not self._db_instance:
-            self._db_instance = db_connector.connect(**MYSQL_CONFIG)
+            try:
+                self._db_instance = db_connector.connect(**MYSQL_CONFIG)
+            except db_connector.errors.InterfaceError:
+                print("Impossible de se connecter à la base de données\n"
+                    "Vérifiez qu'une instance de mysql est bien lancée et "
+                    "est correctement configurée")
+                exit(0)
             try:
                 self._db_instance.database = DB_NAME
             except:
@@ -31,7 +38,8 @@ class DbManager():
         if drop:
             cursor.execute(f'DROP DATABASE `{DB_NAME}`')
 
-        for line in open(SQL_FILE):
+        sql_file_path = path.dirname(path.dirname(path.abspath(__file__)))
+        for line in open(path.join(sql_file_path, SQL_FILE)):
             if line[:2] != '--':
                 sql_statement += line
             if ';' in line:

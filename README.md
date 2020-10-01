@@ -15,7 +15,8 @@ Plusieurs fonctionnalités sont nécessaires pour la réalisation de ce projet:
 
 ---
 ## 3. Pré-requis
-Il est nécessaire d'avoir une base de données mysql sur l'hôte  
+Python >= 3.6  
+Il est nécessaire d'avoir une instance de base de données mysql    
 Pour le développement, j'ai utilisé une image Docker de mysql  
 `docker run -it -p 3306:3306 -e MYSQL_ROOT_PASSWORD='PASSWORD_HERE' mysql:latest`  
 -> Modifiez le mot de passe et gardez le de côté, on en aura encore besoin 😉
