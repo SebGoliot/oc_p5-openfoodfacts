@@ -1,7 +1,7 @@
 from re import search
 import requests
 import json
-from settings import API_ENDPOINT
+from openfoodfacts.settings import API_ENDPOINT
 
 class DataScraper():
     

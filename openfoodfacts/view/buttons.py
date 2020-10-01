@@ -1,5 +1,5 @@
 import npyscreen
-from view.forms_const import *
+from openfoodfacts.view.forms_const import *
 
 class BackButton(npyscreen.ButtonPress):
     def whenPressed(self):

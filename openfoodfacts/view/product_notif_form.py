@@ -1,6 +1,7 @@
 import npyscreen
 from npyscreen.wgtextbox import FixedText
-from view.buttons import BackButton, FindSubstituteButton, SaveProductButton
+from openfoodfacts.view.buttons import (
+    BackButton, FindSubstituteButton, SaveProductButton)
 
 class ProductsNotifyForm(npyscreen.FormBaseNew):
 

@@ -1,6 +1,6 @@
 import mysql.connector as db_connector
-from controller.data_scraper import DataScraper
-from settings import *
+from openfoodfacts.controller.data_scraper import DataScraper
+from openfoodfacts.settings import *
 
 
 class DbManager():

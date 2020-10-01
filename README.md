@@ -21,10 +21,10 @@ Pour le développement, j'ai utilisé une image Docker de mysql
 -> Modifiez le mot de passe et gardez le de côté, on en aura encore besoin 😉
 
 ---
-## 4. Déploiement
+## 4. Utilisation
 
 - Clonez le repo et `cd` à l'intérieur
-- Modifiez `src/settings.py` :
+- Modifiez `openfoodfacts/settings.py` :
     - ligne 10, modifiez si besoin l'`user` de la base de données
     - ligne 11, modifiez le mot de passe de la base de données
 - Créez un environement virtuel : `python -m venv venv`
@@ -32,6 +32,4 @@ Pour le développement, j'ai utilisé une image Docker de mysql
     - Windows : `.\venv\Scripts\Activate.ps1`
     - Linux / Mac : `source venv/bin/activate`
 - Installez les dépendances : `pip install -r requirements.txt`
-- Lancez le programme :
-    - `cd src`
-    - `python run.py`
+- Lancez le programme : `python -m openfoodfacts`

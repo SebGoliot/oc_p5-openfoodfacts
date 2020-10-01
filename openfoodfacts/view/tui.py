@@ -1,11 +1,11 @@
 import npyscreen
-from model.product import Product, Substitute
-from view.forms_const import *
-from view.main_form import MainForm
-from view.product_notif_form import ProductsNotifyForm
-from view.products_form import ProductsForm
-from view.search_form import SearchForm
-from controller.db_manager import DbManager
+from openfoodfacts.model.product import Product, Substitute
+from openfoodfacts.view.forms_const import *
+from openfoodfacts.view.main_form import MainForm
+from openfoodfacts.view.product_notif_form import ProductsNotifyForm
+from openfoodfacts.view.products_form import ProductsForm
+from openfoodfacts.view.search_form import SearchForm
+from openfoodfacts.controller.db_manager import DbManager
 
 class App(npyscreen.NPSAppManaged):
 

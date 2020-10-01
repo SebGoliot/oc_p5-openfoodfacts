@@ -1,6 +1,6 @@
 import npyscreen
-from model.product import Product, Substitute
-from view.buttons import BackButton, ExitButton, ProductButton
+from openfoodfacts.model.product import Product, Substitute
+from openfoodfacts.view.buttons import BackButton, ExitButton, ProductButton
 
 class ProductsForm(npyscreen.FormMultiPage):
 

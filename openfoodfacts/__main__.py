@@ -1,4 +1,4 @@
-from view.tui import *
+from .view.tui import *
 
 if __name__ == "__main__":
     app = App().run()

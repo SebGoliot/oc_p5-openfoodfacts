@@ -1,9 +1,9 @@
 import npyscreen
 from npyscreen.wgtextbox import FixedText, Textfield
-from settings import CATEGORIES
-from view.buttons import (
+from openfoodfacts.settings import CATEGORIES
+from openfoodfacts.view.buttons import (
     BackButton, ExitButton, CategoryButton, SearchFieldButton)
-from view.forms_const import PRODUCTS_SEARCH
+from openfoodfacts.view.forms_const import PRODUCTS_SEARCH
 
 class SearchForm(npyscreen.FormBaseNew):
     

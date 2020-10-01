@@ -1,5 +1,5 @@
 import npyscreen
-from view.buttons import (
+from openfoodfacts.view.buttons import (
     SearchButton, FavoritesButton, ResetDBButton, ExitButton)
 
 class MainForm(npyscreen.FormBaseNew):
