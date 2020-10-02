@@ -33,4 +33,6 @@ Pour le développement, j'ai utilisé une image Docker de mysql
     - Windows : `.\venv\Scripts\Activate.ps1`
     - Linux / Mac : `source venv/bin/activate`
 - Installez les dépendances : `pip install -r requirements.txt`
-- Lancez le programme : `python -m openfoodfacts`
+- Lancez le programme :
+    - option 1 : comme un module : `python -m openfoodfacts`
+    - option 2 : comme un script : `python run.py`

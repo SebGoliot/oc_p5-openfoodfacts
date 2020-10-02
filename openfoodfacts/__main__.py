@@ -1,4 +1,7 @@
 from .view.tui import *
 
-if __name__ == "__main__":
+def run():
     app = App().run()
+
+if __name__ == "__main__":
+    run()
