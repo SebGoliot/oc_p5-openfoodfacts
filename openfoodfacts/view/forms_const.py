@@ -1,7 +1,7 @@
-MAIN = 'MAIN'
-SEARCH_FORM = 'SearchForm'
+MAIN = "MAIN"
+SEARCH_FORM = "SearchForm"
 
-PRODUCTS_SEARCH = 'ProductsSearchForm'
-PRODUCTS_CATEGORY = 'ProductsCategoryForm'
-PRODUCTS_FAVORITES = 'ProductsFavoritesForm'
-PRODUCT_NOTIFY = 'ProductsNotifyForm'
+PRODUCTS_SEARCH = "ProductsSearchForm"
+PRODUCTS_CATEGORY = "ProductsCategoryForm"
+PRODUCTS_FAVORITES = "ProductsFavoritesForm"
+PRODUCT_NOTIFY = "ProductsNotifyForm"

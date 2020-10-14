@@ -1,9 +1,10 @@
 from typing import Tuple
 
 
-class Product():
-
-    def __init__(self, product_id: int, name: str, category:int, score: str, stores: str):
+class Product:
+    def __init__(
+        self, product_id: int, name: str, category: int, score: str, stores: str
+    ):
         self.product_id = product_id
         self.name = name
         self.category = category
@@ -19,16 +20,21 @@ class Product():
 
     def get_tuple(self):
         return (
-            self.product_id, self.name, self.category, self.score, self.stores)
+            self.product_id,
+            self.name,
+            self.category,
+            self.score,
+            self.stores,
+        )
 
     def __repr__(self):
         return (
-            f'#{self.product_id}-{self.category}: {self.name} ^{self.score}\n'
-            f'buy @ {self.stores}')
+            f"#{self.product_id}-{self.category}: {self.name} ^{self.score}\n"
+            f"buy @ {self.stores}"
+        )
 
 
-class Substitute():
-
+class Substitute:
     def __init__(self, substitute: Product, from_product: Product):
         self.substitute = substitute
         self.from_product = from_product
