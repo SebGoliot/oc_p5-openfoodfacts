@@ -39,7 +39,6 @@ class DbManager:
         sql_statement = ""
 
         if drop:
-            print("Effacement de la Base de Données...")
             cursor.execute(f"DROP DATABASE `{DB_NAME}`")
 
         sql_file_path = path.dirname(path.dirname(path.abspath(__file__)))
@@ -51,7 +50,6 @@ class DbManager:
                 sql_statement = ""
 
         if populate:
-            print("Remplissage de la Base de Données...")
             self._populate_db()
 
     def _populate_db(self):
