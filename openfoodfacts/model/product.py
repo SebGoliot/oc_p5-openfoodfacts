@@ -2,6 +2,10 @@ from typing import Tuple
 
 
 class Product:
+    """The Product class represents a product and contains all the
+    relevant data needed by the application
+    """
+
     def __init__(
         self, product_id: int, name: str, category: int, score: str, stores: str
     ):
@@ -19,6 +23,7 @@ class Product:
         return cls(*payload)
 
     def get_tuple(self):
+        """Returns a tuple containing all the data of a Product instance """
         return (
             self.product_id,
             self.name,
@@ -35,6 +40,10 @@ class Product:
 
 
 class Substitute:
+    """The Substitute class represents a substitute entry.
+    It stores two Product objects, a substitute and a substitued product
+    """
+
     def __init__(self, substitute: Product, from_product: Product):
         self.substitute = substitute
         self.from_product = from_product

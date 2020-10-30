@@ -9,6 +9,8 @@ from openfoodfacts.controller.db_manager import DbManager
 
 
 class App(npyscreen.NPSAppManaged):
+    """This is the entry point of the TUI. """
+
     def __init__(self):
         self.db_mgr = DbManager()
         self.categories = self.db_mgr.get_categories()
@@ -20,6 +22,8 @@ class App(npyscreen.NPSAppManaged):
         self.addForm(SEARCH_FORM, SearchForm, name="OpenFoodFacts - Search")
 
     def product_notify(self, product):
+        """This method displays a notification containing a product's data. """
+
         try:
             self.removeForm(PRODUCT_NOTIFY)
         except KeyError:
@@ -34,6 +38,8 @@ class App(npyscreen.NPSAppManaged):
         self.switchForm(PRODUCT_NOTIFY)
 
     def late_add_form(self, form_id, **kwargs):
+        """This method is used to safely add forms while the TUI is running. """
+
         name, products = None, None
         try:
             self.removeForm(form_id)

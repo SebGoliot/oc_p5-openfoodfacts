@@ -5,6 +5,8 @@ from openfoodfacts.settings import API_ENDPOINT
 
 
 class DataScraper:
+    """This class is responsible for getting data from the OpenFoodFacts API """
+
     @classmethod
     def get_api_category(cls, category, limit=250):
         """Gets data from the API corresponding to a category """
@@ -23,7 +25,7 @@ class DataScraper:
 
     @staticmethod
     def sanitize_data(data):
-        """Sanitizes data from the api """
+        """Sanitizes data from the API """
 
         json_data = json.loads(data.decode("utf-8"))
         products = []

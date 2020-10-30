@@ -8,6 +8,10 @@ from openfoodfacts.view.buttons import (
 
 
 class MainForm(npyscreen.FormBaseNew):
+    """This form in the main form of the TUI.
+    It displays the main menu.
+    """
+
     def create(self):
 
         self.search_btn = self.add(SearchButton, name="Rechercher un produit")

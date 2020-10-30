@@ -3,26 +3,36 @@ from openfoodfacts.view.forms_const import *
 
 
 class BackButton(npyscreen.ButtonPress):
+    """Button used to go back in the application """
+
     def whenPressed(self):
         self.parent.parentApp.switchFormPrevious()
 
 
 class ExitButton(npyscreen.ButtonPress):
+    """Button used to exit the application. """
+
     def whenPressed(self):
         self.parent.parentApp.switchForm(None)
 
 
 class SearchButton(npyscreen.ButtonPress):
+    """Button used to switch to the Search form. """
+
     def whenPressed(self):
         self.parent.parentApp.switchForm(SEARCH_FORM)
 
 
 class FavoritesButton(npyscreen.ButtonPress):
+    """Button used to switch to the Favorites form. """
+
     def whenPressed(self):
         self.parent.parentApp.late_add_form(PRODUCTS_FAVORITES)
 
 
 class ResetDBButton(npyscreen.ButtonPress):
+    """Button used to reset the database, it also displays a notification. """
+
     def whenPressed(self):
         notification_message = (
             "Veuillez patienter...\n"
@@ -33,12 +43,16 @@ class ResetDBButton(npyscreen.ButtonPress):
 
 
 class SearchFieldButton(npyscreen.ButtonPress):
+    """Button used to perform a search. """
+
     def whenPressed(self):
         search = self.parent.search_field.value
         self.parent.parentApp.late_add_form(PRODUCTS_SEARCH, search=search)
 
 
 class CategoryButton(npyscreen.ButtonPress):
+    """Button used to switch to a category form. """
+
     def whenPressed(self):
         self.parent.parentApp.late_add_form(
             PRODUCTS_CATEGORY, category=self.name
@@ -46,6 +60,8 @@ class CategoryButton(npyscreen.ButtonPress):
 
 
 class SaveProductButton(npyscreen.ButtonPress):
+    """Button used to save a product to the favorites. """
+
     def __init__(self, *args, **kwargs):
         self.favorite_id = kwargs.get("favorite_id")
         self.substitued_id = kwargs.get("substitued_id")
@@ -60,6 +76,8 @@ class SaveProductButton(npyscreen.ButtonPress):
 
 
 class FindSubstituteButton(npyscreen.ButtonPress):
+    """Button used to perform a substitutes search. """
+
     def __init__(self, *args, **kwargs):
         self.from_product = kwargs.get("from_product")
         super().__init__(*args, **kwargs)
@@ -73,6 +91,10 @@ class FindSubstituteButton(npyscreen.ButtonPress):
 
 
 class ProductButton(npyscreen.ButtonPress):
+    """Button used to display the products, in the TUI and
+    in a notification when pressed.
+    """
+
     def __init__(self, *args, **kwargs):
         self.product_id = kwargs.get("product_id")
         super().__init__(*args, **kwargs)

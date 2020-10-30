@@ -5,6 +5,8 @@ from os import path
 
 
 class DbManager:
+    """This class is responsible of the database management"""
+
     def __init__(self):
         self._db_instance = None
 

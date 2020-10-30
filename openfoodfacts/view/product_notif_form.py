@@ -8,6 +8,9 @@ from openfoodfacts.view.buttons import (
 
 
 class ProductsNotifyForm(npyscreen.FormBaseNew):
+    """This form is used to display a notification containing all the relevant
+    data of a product.
+    """
 
     DEFAULT_COLUMNS = 60
     DEFAULT_LINES = 15
@@ -56,6 +59,8 @@ class ProductsNotifyForm(npyscreen.FormBaseNew):
         self.add(BackButton, name="Retour", relx=46)
 
     def get_score_color(self):
+        """Returns a color based on the score of a product. """
+
         colors = {
             "A": "GOOD",
             "B": "STANDOUT",

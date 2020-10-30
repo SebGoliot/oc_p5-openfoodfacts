@@ -4,6 +4,8 @@ from openfoodfacts.view.buttons import BackButton, ExitButton, ProductButton
 
 
 class ProductsForm(npyscreen.FormMultiPage):
+    """This form is used to display a list of product buttons. """
+
     def __init__(self, *args, **kwargs):
         self.products = kwargs.get("products")
         super().__init__(*args, **kwargs)

@@ -11,6 +11,8 @@ from openfoodfacts.view.forms_const import PRODUCTS_SEARCH
 
 
 class SearchForm(npyscreen.FormBaseNew):
+    """This form displays the search menu. """
+
     def create(self):
 
         self.add(FixedText, value="Recherchez un produit:", editable=False)
